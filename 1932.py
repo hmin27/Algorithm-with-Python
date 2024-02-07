@@ -7,7 +7,7 @@ import sys
 total = []
 arr = []
 
-# 마지막 행부터 최소값 저장
+# 마지막 행부터 최댓값 저장
 def calculate_cost(row):
     global total
 
