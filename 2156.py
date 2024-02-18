@@ -3,22 +3,17 @@
 # [2156] 포도주 시식
 
 n = int(input())
-arr = []
+wine = [0]
 
 for i in range(n):
-    arr.append(int(input()))
+    wine.append(int(input()))
 
-case_a, case_b, case_c = 0, 0, 0
+dp = [0 for _ in range(n+1)]
+dp[1] = wine[1]
+if n>=2:
+    dp[2] = wine[1] + wine[2]
 
-for i in range(n):
-    if i%3 == 0:
-        case_a += arr[i]
-        case_b += arr[i]
-    if i%3 == 1:
-        case_a += arr[i]
-        case_c += arr[i]
-    if i%3 == 2:
-        case_b += arr[i]
-        case_c += arr[i]
+for i in range(3, n+1):
+    dp[i] = max(dp[i-1], wine[i]+wine[i-1]+dp[i-3], wine[i]+dp[i-2])
 
-print(max(case_a, case_b, case_c))
+print(dp[n])
